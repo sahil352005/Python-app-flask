@@ -1,37 +1,130 @@
-from flask import Flask, render_template, send_from_directory
-import os
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
 
-app = Flask(__name__)
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+        }
 
-# Configuration for static files and templates
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+        nav ul li {
+            margin: 0 15px;
+        }
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
 
-@app.route('/courses')
-def courses():
-    return render_template('courses.html')
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #f4f4f4;
+        }
 
-# Serve static files securely
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return send_from_directory(STATIC_DIR, filename)
+        .course-list {
+            display: flex;
+            justify-content: space-between;
+        }
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+        .course {
+            width: 45%;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+        }
 
-# Requirements file (requirements.txt)
-# Flask==2.1.0
-# Werkzeug==2.1.1
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form input, form textarea {
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="hero">
+            <h1>Welcome to Our E-Learning Platform</h1>
+            <p>Discover, Learn, Grow</p>
+        </div>
+
+        <div class="course-list">
+            <div class="course">
+                <h2>Introduction to Programming</h2>
+                <p>Learn the basics of programming</p>
+            </div>
+            <div class="course">
+                <h2>Web Development Fundamentals</h2>
+                <p>Master HTML, CSS, and JavaScript</p>
+            </div>
+        </div>
+
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-Learning Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>
